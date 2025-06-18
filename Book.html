@@ -21,15 +21,15 @@
             <div class="modal-body">
                 <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title">
+                  <input type="text" class="form-control" id="title" required>
                 </div>
                 <div class="mb-3">
                   <label for="author" class="form-label">Author</label>
-                  <input type="text" class="form-control" id="author">
+                  <input type="text" class="form-control" id="author" required>
                 </div>
                 <div class="mb-3">
                     <label for="pages" class="form-label">Pages</label>
-                    <input type="number" class="form-control" id="pages">
+                    <input type="number" class="form-control" id="pages" required>
                   </div>
                 <div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="read">
@@ -46,20 +46,10 @@
  
 <!-- Table -->
 <div class="container-sm mt-5">
-    <h2>Books</h2>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">Pages</th>
-            <th scope="col">Read</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody class="table-group-divider">
-        </tbody>
-      </table>
+      <div id="table">
+
+      </div>
+
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Add new book
       </button>

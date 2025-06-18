@@ -1,8 +1,16 @@
 const myLibrary = [];
 
-function Book(id, title, author, pages, read) {
+const headers = ['Title', 'Author', 'Pages', 'Read', 'Action'];
+
+let myTable = document.querySelector('#table');
+
+function Book(title, author, pages, read) {
   // the constructor...
-  this.id = id;
+  if (!new.target) {
+    throw Error("You must use the 'new' operator to call the constructor");
+  }
+
+  this.id = crypto.randomUUID();
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -17,31 +25,36 @@ function addBookToLibrary() {
   let pages = document.getElementById('pages').value;
   let read = document.getElementById('read').checked;
 
-  const book = new Book(crypto.randomUUID(), title, author, pages, read);
+  const book = new Book(title, author, pages, read);
 
   myLibrary.push(book);
 
-  let table = document.querySelector(".table");
-  
+  let table = document.createElement('table');
+  let headerRow = document.createElement('tr');
 
-  //needs to change this
-  for(let obj of myLibrary){
-    let tr = table.insertRow();
-    tr.insertCell().textContent = obj.title;
-    tr.insertCell().textContent = obj.author;
-    tr.insertCell().textContent = obj.pages;
-    tr.insertCell().textContent = obj.read;
-    tr.insertCell().innerHTML = '<button type="button" class="btn btn-danger btn-sm" onclick="remove()">Remove</button> <button type="button" class="btn btn-success btn-sm" onclick="read()">Read</button>';
-  }
+  headers.forEach(header => {
+    let header = document.createElement('th');
+    let textNode = document.createTextNode(header);
+    header.appendChild(textNode);
+  });
+
+  table.appendChild(headerRow);
+
+  myLibrary.forEach(lib => {
+    let row = document.createElement('tr');
+    
+    Object.values(lib).forEach(text =>{
+      let cell = document.createElement('td');
+      let textNode = document.createTextNode(text);
+      cell.appendChild(textNode);
+      row.appendChild(cell);
+    })
+
+    table.appendChild(row);
+
+  });
+
+  myTable.appendChild(table);
 
   event.preventDefault();
 }
-
-function remove(){
-
-}
-
-function read(){
-
-}
-
